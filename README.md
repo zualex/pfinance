@@ -11,7 +11,7 @@
 - docker exec -it pfinance_db_1 bash
 - psql -p 5432 postgres postgres
 - python manage.py migrate
-- python manage.py makemigrations polls
+- python manage.py makemigrations
 - python manage.py sqlmigrate polls 0001
 
 ## Commands
