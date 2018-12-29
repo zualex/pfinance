@@ -30,3 +30,4 @@
 ## Create a Django project
 
 - docker-compose run web django-admin.py startproject pfinance
+- python manage.py startapp wallets
