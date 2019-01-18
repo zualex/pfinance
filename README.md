@@ -13,6 +13,7 @@
 - python manage.py migrate
 - python manage.py makemigrations
 - python manage.py sqlmigrate polls 0001
+- python manage.py loaddata pfinance/fixtures/*
 
 ## Commands
 
