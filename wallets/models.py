@@ -26,3 +26,14 @@ class Wallet(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Category(models.Model):
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
+    type_transaction = models.ForeignKey('TypeTransaction', on_delete=models.CASCADE)
+    name = models.CharField(max_length=70)
+    is_active = models.BooleanField(default=True)
+    weight = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name

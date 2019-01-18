@@ -1,0 +1,64 @@
+[
+  {
+    "model": "wallets.category",
+    "pk": 1,
+    "fields": {
+      "type_transaction": 2,
+      "name": "Зарплата",
+      "is_active": 1,
+      "weight": 10
+    }
+  },
+  {
+    "model": "wallets.category",
+    "pk": 2,
+    "fields": {
+      "type_transaction": 2,
+      "name": "Подарки",
+      "is_active": 1,
+      "weight": 20
+    }
+  },
+  {
+    "model": "wallets.category",
+    "pk": 3,
+    "fields": {
+      "type_transaction": 1,
+      "name": "Продукты",
+      "is_active": 1,
+      "weight": 10
+    }
+  },
+  {
+    "model": "wallets.category",
+    "pk": 4,
+    "fields": {
+      "type_transaction": 1,
+      "name": "Транспорт",
+      "is_active": 1,
+      "weight": 20
+    }
+  },
+  {
+    "model": "wallets.category",
+    "pk": 5,
+    "fields": {
+      "parent": 4,
+      "type_transaction": 1,
+      "name": "Топливо",
+      "is_active": 1,
+      "weight": 10
+    }
+  },
+  {
+    "model": "wallets.category",
+    "pk": 6,
+    "fields": {
+      "parent": 4,
+      "type_transaction": 1,
+      "name": "Сервис и запчасти",
+      "is_active": 1,
+      "weight": 20
+    }
+  }
+]
