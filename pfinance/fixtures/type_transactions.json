@@ -1,0 +1,16 @@
+[
+  {
+    "model": "wallets.typeTransaction",
+    "pk": 1,
+    "fields": {
+      "name": "expense"
+    }
+  },
+  {
+    "model": "wallets.typeTransaction",
+    "pk": 2,
+    "fields": {
+      "name": "income"
+    }
+  }
+]

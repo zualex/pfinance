@@ -2,6 +2,13 @@ from django.conf import settings
 from django.db import models
 
 
+class TypeTransaction(models.Model):
+    name = models.CharField(max_length=10)
+
+    def __str__(self):
+        self.name
+
+
 class Currency(models.Model):
     name = models.CharField(max_length=3)
 

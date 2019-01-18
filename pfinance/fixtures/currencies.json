@@ -6,14 +6,14 @@
       "name": "RUB"
     }
   },
-    {
+  {
     "model": "wallets.currency",
     "pk": 2,
     "fields": {
       "name": "EUR"
     }
   },
-    {
+  {
     "model": "wallets.currency",
     "pk": 3,
     "fields": {
