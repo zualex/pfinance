@@ -41,6 +41,7 @@ class Category(models.Model):
 
 class Transaction(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    wallet = models.ForeignKey('Wallet', on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     type_transaction = models.ForeignKey('TypeTransaction', on_delete=models.CASCADE)
     value = models.PositiveIntegerField()
