@@ -27,6 +27,16 @@ class Wallet(models.Model):
     def __str__(self):
         return self.name
 
+    def get_total_amount_income(self):
+        return 100
+
+    def get_total_amount_expense(self):
+        return 50
+
+    def get_total_amount(self):
+        result = self.get_total_amount_income() - self.get_total_amount_expense()
+
+        return result
 
 class Category(models.Model):
     parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
