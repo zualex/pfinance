@@ -6,7 +6,7 @@ class TypeTransaction(models.Model):
     name = models.CharField(max_length=10)
 
     def __str__(self):
-        self.name
+        return self.name
 
 
 class Currency(models.Model):
@@ -46,4 +46,4 @@ class Transaction(models.Model):
     value = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    datetime = models.DateTimeField()
+    datetime = models.DateTimeField(auto_now_add=True)
