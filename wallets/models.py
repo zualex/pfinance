@@ -37,3 +37,13 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Transaction(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    type_transaction = models.ForeignKey('TypeTransaction', on_delete=models.CASCADE)
+    value = models.PositiveIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    datetime = models.DateTimeField()
