@@ -8,6 +8,16 @@ class TypeTransaction(models.Model):
     def __str__(self):
         return self.name
 
+    # TODO add cache
+    @staticmethod
+    def get_income():
+        return TypeTransaction.objects.get(name="income")
+
+    # TODO add cache
+    @staticmethod
+    def get_expense():
+        return TypeTransaction.objects.get(name="expense")
+
 
 class Currency(models.Model):
     name = models.CharField(max_length=3)
@@ -28,10 +38,10 @@ class Wallet(models.Model):
         return self.name
 
     def get_total_amount_income(self):
-        return 100
+        return Transaction.get_amount_by_wallet(self, TypeTransaction.get_income())
 
     def get_total_amount_expense(self):
-        return 50
+        return Transaction.get_amount_by_wallet(self, TypeTransaction.get_expense())
 
     def get_total_amount(self):
         result = self.get_total_amount_income() - self.get_total_amount_expense()
@@ -58,3 +68,15 @@ class Transaction(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     datetime = models.DateTimeField(auto_now_add=True)
+
+    @staticmethod
+    def get_amount_by_wallet(wallet, type_transaction):
+        transactions = Transaction.objects.filter(
+            wallet=wallet,
+            user=wallet.user,
+            type_transaction=type_transaction
+        )
+
+        result = sum([row.value for row in transactions])
+
+        return result
