@@ -32,3 +32,9 @@
 
 - docker-compose run web django-admin.py startproject pfinance
 - python manage.py startapp wallets
+
+
+## Style guide
+
+- https://google.github.io/styleguide/pyguide.html
+- https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/

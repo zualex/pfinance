@@ -11,11 +11,13 @@ class TypeTransaction(models.Model):
     # TODO add cache
     @staticmethod
     def get_income():
+        """Get income TypeTransaction."""
         return TypeTransaction.objects.get(name="income")
 
     # TODO add cache
     @staticmethod
     def get_expense():
+        """Get expense TypeTransaction."""
         return TypeTransaction.objects.get(name="expense")
 
 
@@ -38,12 +40,15 @@ class Wallet(models.Model):
         return self.name
 
     def get_total_amount_income(self):
+        """Get total amount income in wallet."""
         return Transaction.get_amount_by_wallet(self, TypeTransaction.get_income())
 
     def get_total_amount_expense(self):
+        """Get total amount expense in wallet."""
         return Transaction.get_amount_by_wallet(self, TypeTransaction.get_expense())
 
     def get_total_amount(self):
+        """Get total amount in wallet."""
         result = self.get_total_amount_income() - self.get_total_amount_expense()
 
         return result
@@ -71,6 +76,16 @@ class Transaction(models.Model):
 
     @staticmethod
     def get_amount_by_wallet(wallet, type_transaction):
+        """Get amount by wallet and type transaciton
+
+        Args:
+            wallet: object Wallet
+            type_transaction: object TypeTransaction
+
+        Returns:
+            Total amount
+
+        """
         transactions = Transaction.objects.filter(
             wallet=wallet,
             user=wallet.user,
