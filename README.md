@@ -1,5 +1,7 @@
 # Personal finance
 
+Template: AdminLTE-2.4.5
+
 ## Run
 
 - docker-compose up --build
