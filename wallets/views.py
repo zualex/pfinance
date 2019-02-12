@@ -45,3 +45,25 @@ def wallets(request):
     }
 
     return render(request, 'wallets/wallets.html', context)
+
+
+def wallet_create(request):
+    context = {
+        'title': 'Create wallet',
+        'currencies': [
+            {
+                'id': 1,
+                'name': 'USD',
+            },
+            {
+                'id': 2,
+                'name': 'EUR',
+            },
+            {
+                'id': 3,
+                'name': 'RUB',
+            },
+        ]
+    }
+
+    return render(request, 'wallets/wallet-create.html', context)

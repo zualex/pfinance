@@ -5,6 +5,15 @@
 {% block content %}
 
 <div class="row">
+  <div class="col-sm-12 col-xs-12">
+    <p>
+      <a href="{% url 'wallet-create' %}" class="btn btn-primary btn-lg">Create wallet</a>
+    </p>
+  </div>
+</div>
+
+
+<div class="row">
   {% for wallet in wallets %}
   <div class="col-sm-6 col-xs-12">
     <div class="info-box">
