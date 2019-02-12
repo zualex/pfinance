@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+
+<div class="row">
+  {% for wallet in wallets %}
+  <div class="col-sm-6 col-xs-12">
+    <div class="info-box">
+
+      {% if wallet.is_active %}
+        <span class="info-box-icon bg-green"><i class="fa fa-credit-card"></i></span>
+      {% else %}
+        <span class="info-box-icon bg-gray"><i class="fa fa-credit-card"></i></span>
+      {% endif %}
+
+        <div class="info-box-content">
+          <span class="info-box-text">{{ wallet.name }}</span>
+          <span class="info-box-number">{{ wallet.account_balance|floatformat:2|intcomma }} {{ wallet.currency }}</span>
+        </div><!-- /.info-box-content -->
+
+      </div><!-- /.info-box -->
+  </div><!-- /.col -->
+  {% endfor %}
+</div>
+
+
+{% endblock %}
