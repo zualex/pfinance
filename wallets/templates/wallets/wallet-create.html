@@ -9,6 +9,12 @@
         <h3 class="box-title">Form</h3>
       </div>
 
+      <form action="{% url 'wallet-create' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+      </form>
+      
       <form class="form-horizontal">
         <div class="box-body">
           <div class="form-group">
