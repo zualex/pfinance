@@ -40,6 +40,19 @@ class Wallet(models.Model):
     def __str__(self):
         return self.name
 
+    @staticmethod
+    def get_by_user(user):
+        """Get wallets by user
+
+        Args:
+            user: object settings.AUTH_USER_MODEL
+
+        Returns:
+            QuerySet of wallets
+
+        """
+        return Wallet.objects.filter(user=user)
+
     def get_total_amount_income(self):
         """Get total amount income in wallet."""
         return Transaction.get_amount_by_wallet(self, TypeTransaction.get_income())
