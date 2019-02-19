@@ -33,6 +33,7 @@ class Wallet(models.Model):
     currency = models.ForeignKey('Currency', on_delete=models.CASCADE)
     name = models.CharField(max_length=70)
     is_active = models.BooleanField(default=False)
+    balance = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
