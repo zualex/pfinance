@@ -28,6 +28,7 @@ def wallet_create(request):
         if form.is_valid():
             wallet = Wallet()
             wallet.name = request.POST['name']
+            wallet.balance = request.POST['balance']
             wallet.currency = Currency.objects.get(pk=request.POST['currency'])
             wallet.is_active = 'is_active' in request.POST
             wallet.user = request.user
