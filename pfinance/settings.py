@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['192.168.99.100']
 
 INSTALLED_APPS = [
     'wallets.apps.WalletsConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
