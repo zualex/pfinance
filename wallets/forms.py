@@ -4,4 +4,4 @@ from .models import Wallet
 class WalletForm(ModelForm):
     class Meta:
         model = Wallet
-        fields = ['name', 'currency', 'is_active']
+        fields = ['name', 'currency', 'is_active', 'balance']
