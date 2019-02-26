@@ -7,7 +7,7 @@
 <div class="row">
   <div class="col-sm-12 col-xs-12">
     <p>
-      <a href="{% url 'wallet-create' %}" class="btn btn-primary btn-lg">Create wallet</a>
+      <a href="{% url 'wallets:wallet-create' %}" class="btn btn-primary btn-lg">Create wallet</a>
     </p>
   </div>
 </div>
@@ -25,7 +25,7 @@
       {% endif %}
 
         <div class="info-box-content">
-          <span class="info-box-text">{{ wallet.name }}</span>
+          <span class="info-box-text"><a href="{% url 'wallets:wallet-update' wallet.id %}">{{ wallet.name }}</a></span>
           <span class="info-box-number">{{ wallet.balance|floatformat:2|intcomma }} {{ wallet.currency }}</span>
         </div><!-- /.info-box-content -->
 
