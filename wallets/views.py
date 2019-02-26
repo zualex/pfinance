@@ -41,20 +41,6 @@ def wallet_create(request):
     context = {
         'title': 'Create wallet',
         'form': form,
-        'currencies': [
-            {
-                'id': 1,
-                'name': 'USD',
-            },
-            {
-                'id': 2,
-                'name': 'EUR',
-            },
-            {
-                'id': 3,
-                'name': 'RUB',
-            },
-        ]
     }
 
     return render(request, 'wallets/wallet-create.html', context)
