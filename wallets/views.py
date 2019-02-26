@@ -66,3 +66,11 @@ def wallet_update(request, wallet_id):
     }
 
     return render(request, 'wallets/wallet-update.html', context)
+
+
+def wallet_delete(request, wallet_id):
+    if request.method == 'POST':
+        wallet = get_object_or_404(Wallet, pk=wallet_id)
+        wallet.delete()
+
+    return HttpResponseRedirect(reverse('wallets:wallets'))
