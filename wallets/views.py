@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -5,6 +6,8 @@ from django.urls import reverse
 from .forms import WalletForm
 from .models import Wallet, Currency
 
+
+@login_required
 def index(request):
     context = {
         'title': 'Dashboard',
@@ -13,6 +16,7 @@ def index(request):
     return render(request, 'wallets/index.html', context)
 
 
+@login_required
 def wallets(request):
     context = {
         'title': 'Wallets',
@@ -22,6 +26,7 @@ def wallets(request):
     return render(request, 'wallets/wallets.html', context)
 
 
+@login_required
 def wallet_create(request):
     if request.method == 'POST':
         form = WalletForm(request.POST)
@@ -46,6 +51,7 @@ def wallet_create(request):
     return render(request, 'wallets/wallet-create.html', context)
 
 
+@login_required
 def wallet_update(request, wallet_id):
     wallet = get_object_or_404(Wallet, pk=wallet_id)
     form = WalletForm(instance=wallet)
@@ -68,6 +74,7 @@ def wallet_update(request, wallet_id):
     return render(request, 'wallets/wallet-update.html', context)
 
 
+@login_required
 def wallet_delete(request, wallet_id):
     if request.method == 'POST':
         wallet = get_object_or_404(Wallet, pk=wallet_id)
