@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-12 col-xs-12">
+    <p>
+      <form action="{% url 'wallets:transaction-delete' id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger btn-lg" value="Delete" />
+      </form>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Form</h3>
+      </div>
+
+      {% url 'wallets:transaction-update' id as action %}
+      {% include 'transactions/_form.html' with form=form action=action button_text='Update' %}
+
+    </div>
+  </div>
+<div class="form">
+
+
+
+{% endblock %}

@@ -109,3 +109,16 @@ class Transaction(models.Model):
         result = sum([row.value for row in transactions])
 
         return result
+
+    @staticmethod
+    def get_by_user(user):
+        """Get transactions by user
+
+        Args:
+            user: object settings.AUTH_USER_MODEL
+
+        Returns:
+            QuerySet of transactions
+
+        """
+        return Transaction.objects.filter(user=user)

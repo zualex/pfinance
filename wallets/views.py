@@ -3,8 +3,8 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from .forms import WalletForm
-from .models import Wallet, Currency
+from .forms import WalletForm, TransactionForm
+from .models import Wallet, Currency, Transaction, Category, TypeTransaction
 
 
 @login_required
@@ -81,3 +81,70 @@ def wallet_delete(request, wallet_id):
         wallet.delete()
 
     return HttpResponseRedirect(reverse('wallets:wallets'))
+
+
+@login_required
+def transactions(request):
+    context = {
+        'title': 'Transactions',
+        'transactions': Transaction.get_by_user(request.user)
+    }
+
+    return render(request, 'transactions/transactions.html', context)
+
+
+@login_required
+def transaction_create(request):
+    if request.method == 'POST':
+        form = TransactionForm(request.POST)
+        if form.is_valid():
+            transaction = Transaction()
+            transaction.user = request.user
+            transaction.wallet = Wallet.objects.get(pk=request.POST['wallet'])
+            transaction.category = Category.objects.get(pk=request.POST['category'])
+            transaction.type_transaction = TypeTransaction.objects.get(pk=request.POST['type_transaction'])
+            transaction.value = request.POST['value']
+            transaction.save()
+
+            return HttpResponseRedirect(reverse('wallets:transactions'))
+    else:
+        form = TransactionForm()
+
+    context = {
+        'title': 'Create transaction',
+        'form': form,
+    }
+
+    return render(request, 'transactions/transaction-create.html', context)
+
+
+@login_required
+def transaction_update(request, transaction_id):
+    transaction = get_object_or_404(Transaction, pk=transaction_id)
+    form = TransactionForm(instance=transaction)
+
+    if request.method == 'POST':
+        transaction.wallet = Wallet.objects.get(pk=request.POST['wallet'])
+        transaction.category = Category.objects.get(pk=request.POST['category'])
+        transaction.type_transaction = TypeTransaction.objects.get(pk=request.POST['type_transaction'])
+        transaction.value = request.POST['value']
+        transaction.save()
+
+        return HttpResponseRedirect(reverse('wallets:transactions'))
+
+    context = {
+        'title': 'Update transaction',
+        'id': transaction_id,
+        'form': form,
+    }
+
+    return render(request, 'transactions/transaction-update.html', context)
+
+
+@login_required
+def transaction_delete(request, transaction_id):
+    if request.method == 'POST':
+        transaction = get_object_or_404(Transaction, pk=transaction_id)
+        transaction.delete()
+
+    return HttpResponseRedirect(reverse('wallets:transactions'))

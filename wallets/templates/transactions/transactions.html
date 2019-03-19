@@ -1,0 +1,51 @@
+{% extends 'layouts/base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-12 col-xs-12">
+    <p>
+      <a href="{% url 'wallets:transaction-create' %}" class="btn btn-primary btn-lg">Create transaction</a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Transactions</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Wallet</th>
+            <th>Category</th>
+            <th>Value</th>
+            <th>Date</th>
+          </tr>
+          {% for transaction in transactions %}
+            <tr>
+              <td>{{ transaction.id }}</td>
+              <td>{{ transaction.type_transaction.name }}</td>
+              <td>{{ transaction.wallet.name }}</td>
+              <td>{{ transaction.category.name }}</td>
+              <td>{{ transaction.value }}</td>
+              <td>{{ transaction.datetime }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>
+
+
+{% endblock %}

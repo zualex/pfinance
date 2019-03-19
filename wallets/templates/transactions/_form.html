@@ -1,0 +1,48 @@
+{% load widget_tweaks %}
+
+<form class="form-horizontal" action="{{ action }}" method="post">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+  <div class="box-body">
+
+    <div class="form-group">
+      {{ form.type_transaction.errors }}
+      <label for="{{ form.type_transaction.id_for_label }}" class="col-sm-2 control-label">{{ form.type_transaction.label }}</label>
+      <div class="col-sm-10">
+        {{ form.type_transaction|add_class:'form-control' }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      {{ form.wallet.errors }}
+      <label for="{{ form.wallet.id_for_label }}" class="col-sm-2 control-label">{{ form.wallet.label }}</label>
+      <div class="col-sm-10">
+        {{ form.wallet|add_class:'form-control' }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      {{ form.category.errors }}
+      <label for="{{ form.category.id_for_label }}" class="col-sm-2 control-label">{{ form.category.label }}</label>
+      <div class="col-sm-10">
+        {{ form.category|add_class:'form-control' }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      {{ form.value.errors }}
+      <label for="{{ form.value.id_for_label }}" class="col-sm-2 control-label">{{ form.value.label }}</label>
+      <div class="col-sm-10">
+        {{ form.value|add_class:'form-control' }}
+      </div>
+    </div>
+
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer">
+    <a href="{% url 'wallets:transactions' %}" type="submit" class="btn btn-default">Back</a>
+    <button type="submit" class="btn btn-info pull-right">{{ button_text }}</button>
+  </div>
+  <!-- /.box-footer -->
+</form>
