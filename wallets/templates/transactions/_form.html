@@ -10,7 +10,9 @@
       {{ form.type_transaction.errors }}
       <label for="{{ form.type_transaction.id_for_label }}" class="col-sm-2 control-label">{{ form.type_transaction.label }}</label>
       <div class="col-sm-10">
-        {{ form.type_transaction|add_class:'form-control' }}
+        {% for radio in form.type_transaction %}
+          <div>{{ radio }}</div>
+        {% endfor %}
       </div>
     </div>
 

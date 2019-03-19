@@ -3,6 +3,7 @@ from django.db import models
 
 
 class TypeTransaction(models.Model):
+    DEFAULT_PK = 1
     name = models.CharField(max_length=10)
 
     def __str__(self):
@@ -82,7 +83,13 @@ class Transaction(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     wallet = models.ForeignKey('Wallet', on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    type_transaction = models.ForeignKey('TypeTransaction', on_delete=models.CASCADE)
+    type_transaction = models.ForeignKey(
+        'TypeTransaction',
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False,
+        default=TypeTransaction.DEFAULT_PK
+    )
     value = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
