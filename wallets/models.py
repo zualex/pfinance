@@ -4,6 +4,8 @@ from django.db import models
 
 class TypeTransaction(models.Model):
     DEFAULT_PK = 1
+    NAME_INCOME = 'income'
+    NAME_EXPENSE = 'expense'
     name = models.CharField(max_length=10)
 
     def __str__(self):
@@ -13,13 +15,28 @@ class TypeTransaction(models.Model):
     @staticmethod
     def get_income():
         """Get income TypeTransaction."""
-        return TypeTransaction.objects.get(name="income")
+        return TypeTransaction.get_by_name(TypeTransaction.NAME_INCOME)
 
     # TODO add cache
     @staticmethod
     def get_expense():
         """Get expense TypeTransaction."""
-        return TypeTransaction.objects.get(name="expense")
+        return TypeTransaction.get_by_name(TypeTransaction.NAME_EXPENSE)
+
+    # TODO add cache
+    @staticmethod
+    def get_default():
+        """Get default TypeTransaction."""
+        return TypeTransaction.objects.get(pk=TypeTransaction.DEFAULT_PK)
+
+    # TODO add cache
+    @staticmethod
+    def get_by_name(name):
+        """Get default TypeTransaction."""
+        if name is not None:
+            return TypeTransaction.objects.get(name=name)
+
+        return TypeTransaction.get_default()
 
 
 class Currency(models.Model):

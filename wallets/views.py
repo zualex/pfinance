@@ -94,7 +94,9 @@ def transactions(request):
 
 
 @login_required
-def transaction_create(request):
+def transaction_create(request, type=None):
+    type_transaction = TypeTransaction.get_by_name(type)
+
     if request.method == 'POST':
         form = TransactionForm(request.POST)
         if form.is_valid():
@@ -108,7 +110,7 @@ def transaction_create(request):
 
             return HttpResponseRedirect(reverse('wallets:transactions'))
     else:
-        form = TransactionForm()
+        form = TransactionForm(initial={'type_transaction': type_transaction})
 
     context = {
         'title': 'Create transaction',

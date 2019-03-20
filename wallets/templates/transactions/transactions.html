@@ -7,7 +7,8 @@
 <div class="row">
   <div class="col-sm-12 col-xs-12">
     <p>
-      <a href="{% url 'wallets:transaction-create' %}" class="btn btn-primary btn-lg">Create transaction</a>
+      <a href="{% url 'wallets:transaction-create-by-type' 'expense' %}" class="btn btn-danger btn-md">Create expense</a>
+      <a href="{% url 'wallets:transaction-create-by-type' 'income' %}" class="btn btn-success btn-md">Create income</a>
     </p>
   </div>
 </div>
