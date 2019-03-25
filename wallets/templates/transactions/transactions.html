@@ -29,6 +29,7 @@
             <th>Category</th>
             <th>Value</th>
             <th>Date</th>
+            <th></th>
           </tr>
           {% for transaction in transactions %}
             <tr>
@@ -38,6 +39,20 @@
               <td>{{ transaction.category.name }}</td>
               <td>{{ transaction.value }}</td>
               <td>{{ transaction.datetime }}</td>
+              <td>
+                <div class="btn-group">
+                  <a class="btn" href="{% url 'wallets:transaction-update' transaction.id %}">
+                    <i class="fa fa-edit"></i>
+                  </a>
+
+                  <form class="btn" action="{% url 'wallets:transaction-delete' transaction.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn" type="submit">
+                      <i class="fa fa-trash-o"></i>
+                    </button>
+                  </form>
+                </div>
+              </td>
             </tr>
           {% endfor %}
         </table>
