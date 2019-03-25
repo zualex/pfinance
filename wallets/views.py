@@ -87,7 +87,8 @@ def wallet_delete(request, wallet_id):
 def transactions(request):
     context = {
         'title': 'Transactions',
-        'transactions': Transaction.get_by_user(request.user)
+        'transactions': Transaction.get_by_user(request.user),
+        'wallets': Wallet.get_by_user(request.user)
     }
 
     return render(request, 'transactions/transactions.html', context)
