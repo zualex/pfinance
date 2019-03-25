@@ -53,6 +53,8 @@
 
                   <form class="btn" action="{% url 'wallets:transaction-delete' transaction.id %}" method="post">
                     {% csrf_token %}
+                    <input type="hidden" name="redirect" value="{{ request.path }}">
+
                     <button class="btn" type="submit">
                       <i class="fa fa-trash-o"></i>
                     </button>

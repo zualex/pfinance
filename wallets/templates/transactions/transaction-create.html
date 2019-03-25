@@ -10,7 +10,7 @@
       </div>
 
       {% url 'wallets:transaction-create' as action %}
-      {% include 'transactions/_form.html' with form=form action=action button_text='Create' %}
+      {% include 'transactions/_form.html' with form=form action=action redirect=redirect button_text='Create' %}
 
     </div>
   </div>

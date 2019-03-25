@@ -111,13 +111,14 @@ def transaction_create(request, type=None):
             transaction.value = request.POST['value']
             transaction.save()
 
-            return HttpResponseRedirect(reverse('wallets:transactions'))
+            return HttpResponseRedirect(request.POST['redirect'])
     else:
         form = TransactionForm(initial={'type_transaction': type_transaction})
 
     context = {
         'title': 'Create transaction',
         'form': form,
+        'redirect': request.META.get('HTTP_REFERER'),
     }
 
     return render(request, 'transactions/transaction-create.html', context)
@@ -135,12 +136,13 @@ def transaction_update(request, transaction_id):
         transaction.value = request.POST['value']
         transaction.save()
 
-        return HttpResponseRedirect(reverse('wallets:transactions'))
+        return HttpResponseRedirect(request.POST['redirect'])
 
     context = {
         'title': 'Update transaction',
         'id': transaction_id,
         'form': form,
+        'redirect': request.META.get('HTTP_REFERER'),
     }
 
     return render(request, 'transactions/transaction-update.html', context)
@@ -152,4 +154,4 @@ def transaction_delete(request, transaction_id):
         transaction = get_object_or_404(Transaction, pk=transaction_id)
         transaction.delete()
 
-    return HttpResponseRedirect(reverse('wallets:transactions'))
+    return HttpResponseRedirect(request.POST['redirect'])
