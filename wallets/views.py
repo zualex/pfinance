@@ -39,13 +39,14 @@ def wallet_create(request):
             wallet.user = request.user
             wallet.save()
 
-            return HttpResponseRedirect(reverse('wallets:wallets'))
+            return HttpResponseRedirect(request.POST['redirect'])
     else:
         form = WalletForm()
 
     context = {
         'title': 'Create wallet',
         'form': form,
+        'redirect': request.META.get('HTTP_REFERER'),
     }
 
     return render(request, 'wallets/wallet-create.html', context)
@@ -63,12 +64,13 @@ def wallet_update(request, wallet_id):
         wallet.is_active = 'is_active' in request.POST
         wallet.save()
 
-        return HttpResponseRedirect(reverse('wallets:wallets'))
+        return HttpResponseRedirect(request.POST['redirect'])
 
     context = {
         'title': 'Update wallet',
         'id': wallet_id,
         'form': form,
+        'redirect': request.META.get('HTTP_REFERER'),
     }
 
     return render(request, 'wallets/wallet-update.html', context)
@@ -80,7 +82,7 @@ def wallet_delete(request, wallet_id):
         wallet = get_object_or_404(Wallet, pk=wallet_id)
         wallet.delete()
 
-    return HttpResponseRedirect(reverse('wallets:wallets'))
+    return HttpResponseRedirect(request.POST['redirect'])
 
 
 @login_required

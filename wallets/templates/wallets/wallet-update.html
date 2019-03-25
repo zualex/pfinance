@@ -7,6 +7,8 @@
     <p>
       <form action="{% url 'wallets:wallet-delete' id %}" method="post">
         {% csrf_token %}
+        <input type="hidden" name="redirect" value="{{ redirect }}">
+
         <input type="submit" class="btn btn-danger btn-lg" value="Delete" />
       </form>
     </p>
@@ -21,7 +23,7 @@
       </div>
 
       {% url 'wallets:wallet-update' id as action %}
-      {% include 'wallets/_form.html' with form=form action=action button_text='Update' %}
+      {% include 'wallets/_form.html' with form=form action=action redirect=redirect button_text='Update' %}
 
     </div>
   </div>
