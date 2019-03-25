@@ -1,0 +1,14 @@
+{% load humanize %}
+
+<div class="info-box">
+    {% if wallet.is_active %}
+        <span class="info-box-icon bg-green"><i class="fa fa-credit-card"></i></span>
+    {% else %}
+        <span class="info-box-icon bg-gray"><i class="fa fa-credit-card"></i></span>
+    {% endif %}
+
+    <div class="info-box-content">
+        <span class="info-box-text"><a href="{% url 'wallets:wallet-update' wallet.id %}">{{ wallet.name }}</a></span>
+        <span class="info-box-number">{{ wallet.balance|floatformat:2|intcomma }} {{ wallet.currency }}</span>
+    </div><!-- /.info-box-content -->
+</div><!-- /.info-box -->
