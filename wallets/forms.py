@@ -13,7 +13,11 @@ class TransactionForm(forms.ModelForm):
         super(TransactionForm, self).__init__(*args, **kwargs)
 
         try:
-            type_transaction = kwargs['initial']['type_transaction']
+            if 'instance' in kwargs:
+                type_transaction = kwargs['instance'].type_transaction
+            else:
+                type_transaction = kwargs['initial']['type_transaction']
+
             self.fields["category"].queryset = Category.objects.filter(type_transaction=type_transaction)
         except KeyError:
             pass
